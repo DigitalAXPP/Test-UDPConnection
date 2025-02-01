@@ -18,8 +18,6 @@ module UDP
     let receiveUdpMessage (port: int) =
         use udpListener = new UdpClient(port)
         let remoteEndPoint = IPEndPoint(IPAddress.Any, port)
-
-        printfn "Listening for UDP messages on port %d..." port
         while true do
             let bytes = udpListener.Receive(ref remoteEndPoint)
             let message = Encoding.UTF8.GetString(bytes)
