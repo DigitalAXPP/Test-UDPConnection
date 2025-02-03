@@ -9,10 +9,10 @@ module UDP
         let bytes = Encoding.UTF8.GetBytes(message)
         let remoteEndPoint = IPEndPoint(IPAddress.Parse(ip), port)
         udpClient.Send(bytes, bytes.Length, remoteEndPoint) |> ignore
-        printfn "Message sent: %s" message
+        //printfn "Message sent: %s" message
 
     // Example Usage
-    sendUdpMessage "Hello, UDP!" "127.0.0.1" 8080
+    //sendUdpMessage "Hello, UDP!" "127.0.0.1" 8080
 
 
     let receiveUdpMessage (port: int) =
@@ -21,7 +21,7 @@ module UDP
         while true do
             let bytes = udpListener.Receive(ref remoteEndPoint)
             let message = Encoding.UTF8.GetString(bytes)
-            printfn "Received: %s" message
+            printf "%s" message
 
     // Example Usage
-    receiveUdpMessage 8080  // This will run indefinitely
+    //receiveUdpMessage 8080  // This will run indefinitely
