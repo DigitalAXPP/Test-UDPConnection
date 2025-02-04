@@ -1,5 +1,6 @@
 module UDP
     open System
+    open System.IO
     open System.Net
     open System.Net.Sockets
     open System.Text
@@ -14,13 +15,18 @@ module UDP
     //sendUdpMessage "Hello, UDP!" "127.0.0.1" 8080
 
 
-    let receiveUdpMessage (port: int) =
+    let writeToLog path message =
+        File.AppendAllText (path, message + "\n")
+
+    let receiveUdpMessage (port: int) (path: string) =
             use udpListener = new UdpClient(port)
             let remoteEndPoint = IPEndPoint(IPAddress.Any, port)
             while true do
                 let bytes = udpListener.Receive(ref remoteEndPoint)
-                let message = Encoding.UTF8.GetString(bytes)
-                printf "%s\r\n" message
+                //let message = Encoding.UTF8.GetString(bytes)
+                writeToLog path (Encoding.UTF8.GetString(bytes))
+                //printf "%s\r\n" message
+                
 
     // Example Usage
     //receiveUdpMessage 8080  // This will run indefinitely

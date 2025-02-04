@@ -48,11 +48,18 @@ type ReceiveUdpMessage () =
     [<ValidateNotNullOrEmpty>]
     member val Port : int = 0 with get, set
 
+    [<Parameter(
+        HelpMessage="Enter the port you want to send the message on.",
+        Mandatory=true,
+        ValueFromPipelineByPropertyName=true)>]
+    [<ValidateNotNullOrEmpty>]
+    member val Path : string = System.String.Empty with get, set
+
     override x.BeginProcessing () =
         base.BeginProcessing ()
 
     override x.ProcessRecord () =
-        receiveUdpMessage x.Port
+        receiveUdpMessage x.Port x.Path
         base.ProcessRecord ()
 
     override x.EndProcessing () =
