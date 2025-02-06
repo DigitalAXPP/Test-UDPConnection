@@ -13,7 +13,9 @@ module UDP
 
     // Example Usage
     //sendUdpMessage "Hello, UDP!" "127.0.0.1" 8080
-
+    let tee_object f x =
+        f x
+        x 
 
     let writeToLog path message =
         File.AppendAllText (path, message + "\n")
@@ -23,9 +25,9 @@ module UDP
             let remoteEndPoint = IPEndPoint(IPAddress.Any, port)
             while true do
                 let bytes = udpListener.Receive(ref remoteEndPoint)
-                //let message = Encoding.UTF8.GetString(bytes)
-                writeToLog path (Encoding.UTF8.GetString(bytes))
-                //printf "%s\r\n" message
+                let message = Encoding.UTF8.GetString(bytes)
+                tee_object (writeToLog path) message
+                |> printf "%s\n"
                 
 
     // Example Usage
