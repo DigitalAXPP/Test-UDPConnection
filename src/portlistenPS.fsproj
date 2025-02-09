@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="general_functions.fs" />
+    <Compile Include="Tcp_Commands.fs" />
     <Compile Include="Udp_Commands.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
