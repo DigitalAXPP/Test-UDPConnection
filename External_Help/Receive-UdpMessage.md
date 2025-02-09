@@ -1,6 +1,6 @@
 ---
-external help file: UDP_Connection.dll-Help.xml
-Module Name: UDP_Connection
+external help file: portlistenPS.dll-Help.xml
+Module Name: portlistenPS
 online version:
 schema: 2.0.0
 ---
@@ -31,7 +31,7 @@ This command listens on port 123 and creates the log file 'udp_messages.log' in 
 ## PARAMETERS
 
 ### -Path
-Enter the port you want to send the message on.
+Enter the path of the log file.
 
 ```yaml
 Type: String
